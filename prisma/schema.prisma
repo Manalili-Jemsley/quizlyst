@@ -13,3 +13,29 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Choice {
+  id          Int  @id @default(autoincrement())
+  questionId  Int
+  body        String
+  isCorrect   Boolean
+}
+
+model Question {
+  id          Int  @id @default(autoincrement())
+  examId      Int
+  body        String
+  isCorrect   Boolean
+  type        Int
+}
+
+model Exam {
+  id          Int  @id @default(autoincrement())
+  createdBy   Int
+  createdAt   DateTime @default(now())
+}
+
+model Type {
+  id          Int @id @default(autoincrement())
+  name        String
+}
